@@ -9,7 +9,7 @@ So in the last 30 or so days, I got started on my Pandas, BeautifulSoup, request
 
 1) The first step is to set an investment philosophy, and identify the metrics best suited to reflect my chosen investment philosophy from the fund metrics that are presented in the MDD.pdfs. 
 2) The second step is to get started on writing python scripts to scrap all of the MDD .pdf files from the satrix.co.za/products page. 
-3) Stage 2 is to extract all of the data from the downloaded MDD.pdfs into a Pandas DataFrame, and then using the chosen metrics from stage 1 to reflect the desired investment philosophy, create some kind of an algorithm to assist in decision making and then coding it. 
-4) Stage 3, (perhaps the most difficult), is to then commit to making monthly purchases of whichever ETFs will be recommended by the data based on this endevour. 
+3) Stage 3 is to extract all of the data from the downloaded MDD.pdfs into a Pandas DataFrame, and then using the chosen metrics from stage 1 to reflect the desired investment philosophy, create some kind of an algorithm to assist in decision making and then coding it. 
+4) Stage 4, (perhaps the most difficult), is to then commit to making monthly purchases of whichever ETFs will be recommended by the data based on this endevour. 
 
 Needless to say, this is pretty much be for improving my Python and problem solvinf skills than it is for ETF picking. My previous boss always said you don't improve your coding by doing more tutorials you find a project and commit to it to the end. So here goes.
