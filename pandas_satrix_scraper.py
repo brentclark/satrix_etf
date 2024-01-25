@@ -1,10 +1,11 @@
 import pandas as pd
+import time
 
 URL = {
     "Satrix Top 40": "https://satrix.co.za/products/product-details?id=44",
     "Satrix MSCI World": "https://satrix.co.za/products/product-details?id=33",
     #    "Satrix Balanced ": "https://satrix.co.za/products/product-details?id=29",
-    "Satrix Money Market": "https://satrix.co.za/products/product-details?id=40",
+    #"Satrix Money Market": "https://satrix.co.za/products/product-details?id=40",
     "Satrix DIVI": "https://satrix.co.za/products/product-details?id=22",
     "Satrix FINI": "https://satrix.co.za/products/product-details?id=23",
     "Satrix INDI": "https://satrix.co.za/products/product-details?id=24",
@@ -45,21 +46,52 @@ URL = {
     "Satrix Inclusion and Diversity": "https://satrix.co.za/products/product-details?id=64",
     "Satrix Capped All Share": "https://satrix.co.za/products/product-details?id=66",
     "Satrix MSCI India": "https://satrix.co.za/products/product-details?id=68",
-    "Satrix Smart City Infrastructure": "https://satrix.co.za/products/product-details?id=71",
+    #    "Satrix Smart City Infrastructure": "https://satrix.co.za/products/product-details?id=71",
 }
 
+frames = []
 for fund, url in URL.items():
     print(fund)
+    time.sleep(1)
     # Read HTML tables from the webpage
-    tables = pd.read_html(url)
+    try:
+        tables = pd.read_html(url)
+
+    except ValueError:
+        print("Breaking !")
+        continue
+    except:
+        print("Breaking !!")
+        continue
 
     # Check if any tables were found
     if tables:
         # Assume the first table is the one you want
         df = tables[2]
+        df['fund'] = fund
 
         # Print the DataFrame
-        print(df)
+        frames.append(df)
+
     else:
         print("No tables found on the page.")
 
+## Create Excel writer with Pandas ExcelWriter
+#with pd.ExcelWriter('/tmp/a.xls', engine='xlsxwriter') as writer:
+#    for fund, df in dfs.items():
+#        df.to_excel(writer, sheet_name=fund, index=False)
+
+#print(
+#    list(dfs.keys())
+#)
+#dfd = pd.DataFrame([dfs])
+#df.dfd = pd.DataFrame(
+
+#with pd.ExcelWriter('/tmp/a.xls', engine='xlsxwriter') as writer:
+#    for fund, df in dfs.items():
+#        df.to_excel(writer, sheet_name=fund, index=False)
+
+merge = pd.concat(frames)
+merge = merge.set_index('fund')
+merge.to_parquet('/tmp/example_2.parquet', compression='gzip', engine='pyarrow')
+print(merge)
